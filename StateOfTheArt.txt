@@ -1,5 +1,6 @@
-- What did the others, techniques and methodologies used, evaluation
-methods, results
+---------------------------------------------------------------------------------------------------------------------------
+- What did the others, techniques and methodologies used, evaluation methods, results
+---------------------------------------------------------------------------------------------------------------------------
 
 Several authors have tried to approach the problem of Searchable Encryption over the past 15 years.
 SE gives users around the world a chance to store and retrieve data from a remote, most often untrusted, server,
@@ -49,13 +50,17 @@ Li et al.’s efficient extension of LWCR addresses the problem of fuzzy searchi
 complexity in generation phase, where t is the number of operations necessary to compute
 the fuzzy sets of a keyword. The scheme still has some leaks in terms of security.
 
+---------------------------------------------------------------------------------------------------------------------------
 - Important names in the field, research teams
+---------------------------------------------------------------------------------------------------------------------------
 
 -Reza Curtmola, Juan Garay, Seny Kamara, Rafail Ostrovsky
 -Dawn Xiaodong Song, David Wagner, Adrian Perrig
 -Eu-Jin Goh
 
+---------------------------------------------------------------------------------------------------------------------------
 - Related articles and books
+---------------------------------------------------------------------------------------------------------------------------
 
 1. Christoph Bosch, Pieter Hartel, Willem Jonker, Andreas Peter – ”A Survey of Provably
 Secure Searchable Encryption”, in ACM Computing Surveys (CSUR) Volume 47 Issue 2,
@@ -69,10 +74,14 @@ http://eprint.iacr.org/
 Encryption: Improved Definitions and Efficient Constructions”, in Proceedings of ACM
 CCS’06, 2006
 
+---------------------------------------------------------------------------------------------------------------------------
 -Relevant links
+---------------------------------------------------------------------------------------------------------------------------
 
 Bloom Filters: https://en.wikipedia.org/wiki/Bloom_filter
 Trapdoor: https://en.wikipedia.org/wiki/Trapdoor_function
 
+---------------------------------------------------------------------------------------------------------------------------
 -Resources and tools
+---------------------------------------------------------------------------------------------------------------------------
 Microsoft Azure, Visual Studio, SQL Management Studio
