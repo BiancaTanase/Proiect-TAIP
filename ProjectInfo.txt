@@ -1,0 +1,9 @@
+TEAM MEMBERS:
+
+-	Grigorita Mihai-Adrian - mihai.grigorita@info.uaic.ro
+-	Nicu Andrei – andrei.nicu@info.uaic.ro
+-	Ostepoc Lucian – lucian.ostepoc@info.uaic.ro
+-	Tanase Bianca – bianca.tanase@info.uaic.ro
+
+PROFESOR COORDONATOR: Ferucio Laurentiu Tiplea
+PROJECT THEME: Searchable Encryption
