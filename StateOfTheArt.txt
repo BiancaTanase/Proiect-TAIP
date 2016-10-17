@@ -1,0 +1,78 @@
+- What did the others, techniques and methodologies used, evaluation
+methods, results
+
+Several authors have tried to approach the problem of Searchable Encryption over the past 15 years.
+SE gives users around the world a chance to store and retrieve data from a remote, most often untrusted, server,
+with the assurance that their information remains private.
+There are 4 big scenerios of using SE:
+-Single-Writer / Single-Reader
+-Single-Writer / Multi-Reader
+-Multi-Writer / Single-Reader
+-Multi-Writer / Multi-Reader
+
+We will further present some of the most relevant schemes in this field.
+
+Song et al. scheme has the credit for being one of the first ideas for building a SE scheme. However,
+its efficiency is not very good, O(nm) both for encryption and search phases, with n
+being the number of files and m being the average number of words per files. Updates are
+made in the same way as encryption. The search is made directly on the encrypted documents.
+
+Goh's Z-IDX index has the advantage that it does not require a specific type
+of encryption scheme, so it can be an IND-CPA one. The index generation phase has
+linear complexity in the number of words per document and the retrieval phase has linear
+complexity in the number of files, which is better, but still not acceptable for modern day
+use of big databases. Also, some of the search results can be irrelevant, due to the usage of
+Bloom Filters (which can produce false positives).
+
+Chang and Mitzenmacher’s schemes are similar to Goh’s (they also use a bit array
+per document, very similar to a Bloom Filter), but their schemes do not return false
+positives. Their schemes are as efficient as Goh’s and they also handle updates easily
+(re-encrypt the document and rebuild its bit array). In addition to this, their schemes
+are built to be efficient for mobile devices, in low bandwidth connection conditions.
+
+Curtmola et al.’s scheme (CKG-2) is the best so far in terms of efficiency in the
+Single-Writer / Single-Reader setting. The authors use an inverted index, which consists of an
+array of nodes and a look-up table. The index generation phase is not improved comparing
+to the previous schemes, still O(nm), but the search phase is optimal. That means that
+when searching for a keyword, the server iterates directly through the documents which
+contain it and retrieves them. However, this scheme handles updates very slowly, as it
+has to rebuild all the structures and resend them to the server whenever a new document
+is uploaded, due to its use of linked lists. The authors also define the strongest security
+definition so far, IND-CKA2.
+
+Golle et al.’s schemes built for solving conjunctive queries also achieve O(nm) when 
+constructing the indexes for each document. These schemes are also efficient for mobile devices, in the low-bandwidth
+connection settings, as the indexes are generated and uploaded only when the user has
+access to a more powerful device. 
+
+Li et al.’s efficient extension of LWCR addresses the problem of fuzzy searching. It uses indexes per keyword and have O(nt)
+complexity in generation phase, where t is the number of operations necessary to compute
+the fuzzy sets of a keyword. The scheme still has some leaks in terms of security.
+
+- Important names in the field, research teams
+
+-Reza Curtmola, Juan Garay, Seny Kamara, Rafail Ostrovsky
+-Dawn Xiaodong Song, David Wagner, Adrian Perrig
+-Eu-Jin Goh
+
+- Related articles and books
+
+1. Christoph Bosch, Pieter Hartel, Willem Jonker, Andreas Peter – ”A Survey of Provably
+Secure Searchable Encryption”, in ACM Computing Surveys (CSUR) Volume 47 Issue 2,
+Article No. 18, January 2015
+2. Dawn Xiaodong Song, David Wagner, Adrian Perrig – ”Practical Techniques for
+Searches on Ecrypted Data”, in Proceedings of IEEE Symposium on Security and Privacy,
+pages 44–55. IEEE, May 2000
+3. Eu-Jin Goh – ”Secure Indexes”, in Cryptology ePrint Archive, Report 2003/216, 2003,
+http://eprint.iacr.org/
+4. Reza Curtmola, Juan Garay, Seny Kamara, Rafail Ostrovsky - ”Searchable Symmetric
+Encryption: Improved Definitions and Efficient Constructions”, in Proceedings of ACM
+CCS’06, 2006
+
+-Relevant links
+
+Bloom Filters: https://en.wikipedia.org/wiki/Bloom_filter
+Trapdoor: https://en.wikipedia.org/wiki/Trapdoor_function
+
+-Resources and tools
+Microsoft Azure, Visual Studio, SQL Management Studio
