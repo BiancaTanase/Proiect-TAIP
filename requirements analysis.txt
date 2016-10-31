@@ -1,0 +1,104 @@
+1) Description:
+
+	We will implement an application that will allow users to store encrypted data on a cloud server, without the server having access to the information.
+	Our project will emphasize searchable encryption and how it is applied. This will be done through a server application and a web application. The lates will be
+	a simple one, allowing the user to perform some operations regarding the data that he wants to store on the server.
+
+		-The application offers a graphic interface for the user, in which he can authenticate/log in with a user name and a password.
+		-The user generates a private key, which he uses during the interaction with the server.
+		-The application offers the possibility of confidential data storage (txt, pdf) in an encrypted way (we will use the AES cryptosystem).
+		-The user can query the data, but the server cannot access or decrypt them.
+		-The server will constantly try to find out information about the data it stores, from the information extracted from the previous queries.
+		-A history of the queries will be available
+		-The user will be capable of physically deleting the data stored on the server.
+
+		The major components of the application will be:
+
+			- a cloud server created with Microsoft Azure that will store the information of the user
+			- a Web application (created with ASP.NET, MVC, Entity Framework) that will represent the communication between the user and the cloud server;
+			this application will allow the user to log in and interact with the server (upload data, download the data)
+			-a database (made using SQL Server) that will store the information related to the application (user documents)
+
+2) Interests
+
+	- the cloud server: offers the users a system which they can use to store sensible information, while having the assurance that the data is safe
+	and the server cannot discover anything about it.
+	- the user: benefits from the application by having access to a safe modality to store his precious information.
+	-the Web application: acting as an intermediate between the user and the server and making their communication more interactive and simple.
+
+	In this scenario, only the user is a human being.
+
+3) Actors and Objectives
+3.1) Objectives
+	
+	- the cloud server: the satisfaction of the user
+	- the Web application: offering the user a simple and interactive way of communicating with the server
+	- the user: to have a safe method of storing and retrieving his information
+
+3.2) Actors:
+	
+	- the cloud server: will store the information without having access to it. 
+	- the Web application: will operate as an intermediate between the server and the user
+	- human users: people who want to store their confidential and important data on a cloud server, having the assurance that the data is well kept and safe
+
+4) Use case scenarios:
+
+4.1) The user creates an account
+	
+	4.1.1) Objective/Context
+		The user opens the page of the Web application and creates an account by adding essential information.
+	
+	4.1.2) Steps
+		1) The user is presented a form in which he must introduce data about himself
+		2) The user chooses an user name and a password
+		3) The account is created
+		4) A private key is generated for the user, which will serve to the decryption of the files.
+		
+	4.1.3) Extensions
+		If the user-name that the user chooses is already taken, he will be warned and asked to choose another one.
+		
+4.2) The user logs in
+	
+	4.2.1) Objective/Context
+		The user opens the page of the Web application and is presented a log in form.
+	
+	4.2.2) Steps
+		1) The user is presented a form in which he must the credentials.
+		2) The user introduces the user-name that he chose when he created his account.
+		3) The user introduces the password that he chose when he created his account.
+		4) The user is logged in and is redirected to the home page of the site.
+		
+	4.2.3) Extensions
+		If the user-name or the password that he introduces are incorrect, he will be warned and to try again.
+
+4.3) The user uploads a file/several files
+
+	4.3.1) Objective/Context
+		The user obtains the address of the site and logs in.
+	
+	4.3.2) Steps
+		1) The user chooses the "Upload" button present on the web page.
+		2) The user chooses the file or the files that he wants to upload on the cloud server.
+		3) The user chooses the key word.
+		4) The files are encrypted using a symmetric cryptosystem (for example AES).
+		5) The index is reconstructed.
+		6) The encrypted data is sent to the server.
+	
+	4.3.3) Extensions
+		The data is not sent to the server due to some connections errors -> the user is shown a warning message.
+
+4.4) The user downloads a file/several files
+
+	4.4.1) Objective/Context
+		The user obtains the address of the site and logs in.
+	
+	4.4.2) Steps
+		1) The user chooses the "Download" button present on the web page.
+		2) The user introduces a key word.
+		3) A trapdoor is generated(a predicate that contains the key word chosen by the user at the upload and which the server uses to search through the files).
+		4) The server searches and finds the encrypted file/files requested by the user.
+		5) The files are decrypted with the private key that was generated for the user when he created his account.
+		6) The files are available for download.
+		
+	4.4.3) Extensions
+		The data is not sent to the client due to some connections errors -> the user is shown a warning message.
