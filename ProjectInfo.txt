@@ -7,3 +7,5 @@ TEAM MEMBERS:
 
 PROFESOR COORDONATOR: Ferucio Laurentiu Tiplea
 PROJECT THEME: Searchable Encryption
+
+SEF DE ECHIPA: Grigorita Mihai
