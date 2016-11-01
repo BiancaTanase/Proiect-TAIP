@@ -1,1 +1,7 @@
 - Related Articles and books
+
+-activity diagram
+-use case diagram
+-package diagram
+
+-front end part of the Web application and the arhitecture of the database
