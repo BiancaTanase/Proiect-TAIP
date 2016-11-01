@@ -1,1 +1,6 @@
 - create StateOfTheArt
+
+-deployment diagram
+-create requirements analysis
+
+-implementation of the cloud server
