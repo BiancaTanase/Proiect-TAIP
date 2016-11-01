@@ -85,7 +85,7 @@
 		6) The encrypted data is sent to the server.
 	
 	4.3.3) Extensions
-		The data is not sent to the server due to some connections errors -> the user is shown a warning message.
+		The data is not sent to the server due to some connection errors -> the user is shown a warning message.
 
 4.4) The user downloads a file/several files
 
@@ -101,4 +101,4 @@
 		6) The files are available for download.
 		
 	4.4.3) Extensions
-		The data is not sent to the client due to some connections errors -> the user is shown a warning message.
+		The data is not sent to the client due to some connection errors -> the user is shown a warning message.
