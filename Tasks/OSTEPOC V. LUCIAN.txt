@@ -1,1 +1,7 @@
 - Related Articles and books
+
+
+-sequence diagram
+-class diagram
+
+-back end part of the Web Application
