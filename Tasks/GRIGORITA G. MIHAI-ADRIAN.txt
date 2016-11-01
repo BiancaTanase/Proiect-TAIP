@@ -1,1 +1,8 @@
 - create StateOfTheArt
+--------------------------------------------------
+-state diagram
+-collaboration diagram
+
+
+--------------------------------------------------
+- implementation of the cloud server
