@@ -17,9 +17,30 @@ namespace Client
             InitializeComponent();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void buttonLogin_Click(object sender, EventArgs e)
         {
+            try
+            {
+                List<Object> parameters = new List<object>();
+                parameters.Add(textBoxNameLogin); 
+                parameters.Add(textBoxPasswordLogin);
+                Command comm = new Command(Request.VerifyLogin, parameters);
 
+                bool response = (bool)comm.Execute(AsynchronousClient.client);
+
+                if(true == response)
+                {
+                    MessageBox.Show("Autentificat!");
+                }
+                else
+                {
+                    MessageBox.Show("Neautorizat!!!");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

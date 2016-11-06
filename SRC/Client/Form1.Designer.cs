@@ -33,27 +33,27 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.labelHome = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.buttonLogin = new System.Windows.Forms.Button();
             this.textBoxPasswordLogin = new System.Windows.Forms.TextBox();
             this.textBoxNameLogin = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonRegister = new System.Windows.Forms.Button();
             this.textBoxPasswordRegister = new System.Windows.Forms.TextBox();
             this.textBoxNameRegister = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.buttonAddData = new System.Windows.Forms.Button();
             this.textBoxDataToAdd = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBoxQuery = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -109,13 +109,22 @@
             this.tabPage2.Text = "Login";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // buttonLogin
+            // 
+            this.buttonLogin.Location = new System.Drawing.Point(179, 137);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(75, 23);
+            this.buttonLogin.TabIndex = 4;
+            this.buttonLogin.Text = "Login";
+            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+            // 
             // textBoxPasswordLogin
             // 
             this.textBoxPasswordLogin.Location = new System.Drawing.Point(155, 93);
             this.textBoxPasswordLogin.Name = "textBoxPasswordLogin";
             this.textBoxPasswordLogin.Size = new System.Drawing.Size(100, 20);
             this.textBoxPasswordLogin.TabIndex = 3;
-            this.textBoxPasswordLogin.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBoxNameLogin
             // 
@@ -155,41 +164,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Register";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.buttonAddData);
-            this.tabPage4.Controls.Add(this.textBoxDataToAdd);
-            this.tabPage4.Controls.Add(this.label5);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(615, 305);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "AddData";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.label7);
-            this.tabPage5.Controls.Add(this.textBox2);
-            this.tabPage5.Controls.Add(this.button1);
-            this.tabPage5.Controls.Add(this.textBoxQuery);
-            this.tabPage5.Controls.Add(this.label6);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(615, 305);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "QueryData";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // buttonLogin
-            // 
-            this.buttonLogin.Location = new System.Drawing.Point(179, 137);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(75, 23);
-            this.buttonLogin.TabIndex = 4;
-            this.buttonLogin.Text = "Login";
-            this.buttonLogin.UseVisualStyleBackColor = true;
             // 
             // buttonRegister
             // 
@@ -232,6 +206,18 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "User name";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.buttonAddData);
+            this.tabPage4.Controls.Add(this.textBoxDataToAdd);
+            this.tabPage4.Controls.Add(this.label5);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(615, 305);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "AddData";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // buttonAddData
             // 
             this.buttonAddData.Location = new System.Drawing.Point(483, 154);
@@ -258,6 +244,37 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Data";
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.label7);
+            this.tabPage5.Controls.Add(this.textBox2);
+            this.tabPage5.Controls.Add(this.button1);
+            this.tabPage5.Controls.Add(this.textBoxQuery);
+            this.tabPage5.Controls.Add(this.label6);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(615, 305);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "QueryData";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(45, 100);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Results";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(105, 97);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(455, 93);
+            this.textBox2.TabIndex = 16;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(485, 68);
@@ -283,23 +300,6 @@
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 13;
             this.label6.Text = "Query";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(105, 97);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(455, 93);
-            this.textBox2.TabIndex = 16;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(45, 100);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Results";
             // 
             // Form1
             // 
