@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b7278b09cc4b4352b6c4a0d317279563" Name="Diagram1" ZoomLevel="85" >
+        <EntityTypeShape EntityType="ModelDB.User" Width="2" PointX="0.875" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelDB.Folder" Width="2" PointX="4.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelDB.Data" Width="2" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="ModelDB.FolderData" />
+        <AssociationConnector Association="ModelDB.UserFolder" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
