@@ -7,4 +7,7 @@
 -back end part of the Web Application
 
 --------------------------------------------------------------------
-11/6/2016 Singleton DB, Server
+11/6/2016
+Creational pattern SINGLETON    pentru DB, Server
+Behavioral pattern STRATEGY     pentru StrategyConvert (Encapsulates an algorithm inside a class)
+Behavioral pattern COMMAND      pentru Command[comunicatie] (Encapsulate a command request as an object)
