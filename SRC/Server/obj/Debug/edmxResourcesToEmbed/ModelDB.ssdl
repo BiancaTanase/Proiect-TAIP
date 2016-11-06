@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModelDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelDBStoreContainer">
+    <EntitySet Name="Users" EntityType="ModelDB.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Folders" EntityType="ModelDB.Store.Folders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Data" EntityType="ModelDB.Store.Data" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FolderData" Association="ModelDB.Store.FolderData">
+      <End Role="Folder" EntitySet="Folders" />
+      <End Role="Data" EntitySet="Data" />
+    </AssociationSet>
+    <AssociationSet Name="UserFolder" Association="ModelDB.Store.UserFolder">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Folder" EntitySet="Folders" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Folder_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Folders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="asignedUser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Data">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="addDate" Type="datetime" Nullable="false" />
+    <Property Name="lastAccessedDate" Type="datetime" Nullable="false" />
+    <Property Name="encryptedData" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FolderId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FolderData">
+    <End Role="Folder" Type="ModelDB.Store.Folders" Multiplicity="1" />
+    <End Role="Data" Type="ModelDB.Store.Data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Folder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Data">
+        <PropertyRef Name="FolderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserFolder">
+    <End Role="User" Type="ModelDB.Store.Users" Multiplicity="*" />
+    <End Role="Folder" Type="ModelDB.Store.Folders" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Folder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Folder_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
