@@ -1,0 +1,8 @@
+C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\bin\Debug\Client.exe.config
+C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\bin\Debug\Client.exe
+C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\bin\Debug\Client.pdb
+C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.Form1.resources
+C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.Properties.Resources.resources
+C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.exe
+C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.pdb

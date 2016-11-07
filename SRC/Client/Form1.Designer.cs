@@ -45,6 +45,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btDecrypt = new System.Windows.Forms.Button();
+            this.rtCipherText = new System.Windows.Forms.RichTextBox();
+            this.rtPlaintext = new System.Windows.Forms.RichTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.teKey = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btEncrypt = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.buttonAddData = new System.Windows.Forms.Button();
             this.textBoxDataToAdd = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -54,12 +62,25 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBoxQuery = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.btSaveText = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tePassword = new System.Windows.Forms.TextBox();
+            this.btEncryptText = new System.Windows.Forms.Button();
+            this.preview = new System.Windows.Forms.Button();
+            this.textPreview = new System.Windows.Forms.RichTextBox();
+            this.btPath = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tePath = new System.Windows.Forms.TextBox();
+            this.DragAndDrop = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -69,6 +90,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(12, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -208,6 +230,14 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btDecrypt);
+            this.tabPage4.Controls.Add(this.rtCipherText);
+            this.tabPage4.Controls.Add(this.rtPlaintext);
+            this.tabPage4.Controls.Add(this.label9);
+            this.tabPage4.Controls.Add(this.teKey);
+            this.tabPage4.Controls.Add(this.label8);
+            this.tabPage4.Controls.Add(this.btEncrypt);
+            this.tabPage4.Controls.Add(this.label10);
             this.tabPage4.Controls.Add(this.buttonAddData);
             this.tabPage4.Controls.Add(this.textBoxDataToAdd);
             this.tabPage4.Controls.Add(this.label5);
@@ -218,9 +248,79 @@
             this.tabPage4.Text = "AddData";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // btDecrypt
+            // 
+            this.btDecrypt.Location = new System.Drawing.Point(286, 201);
+            this.btDecrypt.Name = "btDecrypt";
+            this.btDecrypt.Size = new System.Drawing.Size(75, 23);
+            this.btDecrypt.TabIndex = 27;
+            this.btDecrypt.Text = "Decrypt";
+            this.btDecrypt.UseVisualStyleBackColor = true;
+            this.btDecrypt.Click += new System.EventHandler(this.btDecrypt_Click);
+            // 
+            // rtCipherText
+            // 
+            this.rtCipherText.Location = new System.Drawing.Point(103, 229);
+            this.rtCipherText.Name = "rtCipherText";
+            this.rtCipherText.Size = new System.Drawing.Size(379, 64);
+            this.rtCipherText.TabIndex = 26;
+            this.rtCipherText.Text = "";
+            // 
+            // rtPlaintext
+            // 
+            this.rtPlaintext.Location = new System.Drawing.Point(103, 106);
+            this.rtPlaintext.Name = "rtPlaintext";
+            this.rtPlaintext.Size = new System.Drawing.Size(379, 40);
+            this.rtPlaintext.TabIndex = 25;
+            this.rtPlaintext.Text = "";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(37, 168);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Password";
+            // 
+            // teKey
+            // 
+            this.teKey.Location = new System.Drawing.Point(103, 168);
+            this.teKey.Name = "teKey";
+            this.teKey.Size = new System.Drawing.Size(379, 20);
+            this.teKey.TabIndex = 23;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(37, 229);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 13);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "CipherText";
+            // 
+            // btEncrypt
+            // 
+            this.btEncrypt.Location = new System.Drawing.Point(205, 201);
+            this.btEncrypt.Name = "btEncrypt";
+            this.btEncrypt.Size = new System.Drawing.Size(75, 23);
+            this.btEncrypt.TabIndex = 21;
+            this.btEncrypt.Text = "Encrypt";
+            this.btEncrypt.UseVisualStyleBackColor = true;
+            this.btEncrypt.Click += new System.EventHandler(this.btEncrypt_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(43, 106);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(47, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Plaintext";
+            // 
             // buttonAddData
             // 
-            this.buttonAddData.Location = new System.Drawing.Point(483, 154);
+            this.buttonAddData.Location = new System.Drawing.Point(241, 62);
             this.buttonAddData.Name = "buttonAddData";
             this.buttonAddData.Size = new System.Drawing.Size(75, 23);
             this.buttonAddData.TabIndex = 12;
@@ -232,7 +332,7 @@
             this.textBoxDataToAdd.Location = new System.Drawing.Point(103, 31);
             this.textBoxDataToAdd.Multiline = true;
             this.textBoxDataToAdd.Name = "textBoxDataToAdd";
-            this.textBoxDataToAdd.Size = new System.Drawing.Size(455, 117);
+            this.textBoxDataToAdd.Size = new System.Drawing.Size(455, 25);
             this.textBoxDataToAdd.TabIndex = 11;
             // 
             // label5
@@ -301,6 +401,129 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "Query";
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.DragAndDrop);
+            this.tabPage6.Controls.Add(this.btSaveText);
+            this.tabPage6.Controls.Add(this.button2);
+            this.tabPage6.Controls.Add(this.label11);
+            this.tabPage6.Controls.Add(this.tePassword);
+            this.tabPage6.Controls.Add(this.btEncryptText);
+            this.tabPage6.Controls.Add(this.preview);
+            this.tabPage6.Controls.Add(this.textPreview);
+            this.tabPage6.Controls.Add(this.btPath);
+            this.tabPage6.Controls.Add(this.label12);
+            this.tabPage6.Controls.Add(this.tePath);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(615, 305);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "EncryptFile";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // btSaveText
+            // 
+            this.btSaveText.Location = new System.Drawing.Point(521, 262);
+            this.btSaveText.Name = "btSaveText";
+            this.btSaveText.Size = new System.Drawing.Size(75, 23);
+            this.btSaveText.TabIndex = 21;
+            this.btSaveText.Text = "Save Text";
+            this.btSaveText.UseVisualStyleBackColor = true;
+            this.btSaveText.Click += new System.EventHandler(this.btSaveText_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(431, 262);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 23);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "Decrypt Text";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(294, 223);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 13);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Password";
+            // 
+            // tePassword
+            // 
+            this.tePassword.Location = new System.Drawing.Point(353, 220);
+            this.tePassword.Name = "tePassword";
+            this.tePassword.Size = new System.Drawing.Size(243, 20);
+            this.tePassword.TabIndex = 18;
+            // 
+            // btEncryptText
+            // 
+            this.btEncryptText.Location = new System.Drawing.Point(342, 262);
+            this.btEncryptText.Name = "btEncryptText";
+            this.btEncryptText.Size = new System.Drawing.Size(83, 23);
+            this.btEncryptText.TabIndex = 17;
+            this.btEncryptText.Text = "Encrypt Text";
+            this.btEncryptText.UseVisualStyleBackColor = true;
+            this.btEncryptText.Click += new System.EventHandler(this.btEncryptText_Click);
+            // 
+            // preview
+            // 
+            this.preview.Location = new System.Drawing.Point(126, 262);
+            this.preview.Name = "preview";
+            this.preview.Size = new System.Drawing.Size(102, 23);
+            this.preview.TabIndex = 16;
+            this.preview.Text = "Text Preview";
+            this.preview.UseVisualStyleBackColor = true;
+            this.preview.Click += new System.EventHandler(this.preview_Click);
+            // 
+            // textPreview
+            // 
+            this.textPreview.Location = new System.Drawing.Point(294, 20);
+            this.textPreview.Name = "textPreview";
+            this.textPreview.Size = new System.Drawing.Size(302, 179);
+            this.textPreview.TabIndex = 15;
+            this.textPreview.Text = "";
+            // 
+            // btPath
+            // 
+            this.btPath.Location = new System.Drawing.Point(22, 262);
+            this.btPath.Name = "btPath";
+            this.btPath.Size = new System.Drawing.Size(97, 23);
+            this.btPath.TabIndex = 14;
+            this.btPath.Text = "Choose Path";
+            this.btPath.UseVisualStyleBackColor = true;
+            this.btPath.Click += new System.EventHandler(this.btPath_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(19, 224);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 13);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Path";
+            // 
+            // tePath
+            // 
+            this.tePath.Enabled = false;
+            this.tePath.Location = new System.Drawing.Point(54, 221);
+            this.tePath.Name = "tePath";
+            this.tePath.Size = new System.Drawing.Size(205, 20);
+            this.tePath.TabIndex = 12;
+            // 
+            // DragAndDrop
+            // 
+            this.DragAndDrop.AllowDrop = true;
+            this.DragAndDrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DragAndDrop.Location = new System.Drawing.Point(31, 20);
+            this.DragAndDrop.Name = "DragAndDrop";
+            this.DragAndDrop.Size = new System.Drawing.Size(237, 179);
+            this.DragAndDrop.TabIndex = 22;
+            this.DragAndDrop.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragAndDrop_DragDrop_1);
+            this.DragAndDrop.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragAndDrop_DragEnter);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -319,6 +542,8 @@
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -350,6 +575,26 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBoxQuery;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btDecrypt;
+        private System.Windows.Forms.RichTextBox rtCipherText;
+        private System.Windows.Forms.RichTextBox rtPlaintext;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox teKey;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btEncrypt;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Button btSaveText;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tePassword;
+        private System.Windows.Forms.Button btEncryptText;
+        private System.Windows.Forms.Button preview;
+        private System.Windows.Forms.RichTextBox textPreview;
+        private System.Windows.Forms.Button btPath;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tePath;
+        private System.Windows.Forms.Panel DragAndDrop;
     }
 }
 
