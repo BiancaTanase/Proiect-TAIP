@@ -1,0 +1,401 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using SerializedData;
+
+namespace CurtmolaClient
+{
+    static class Program
+    {
+        public static string password = string.Empty;
+        public static string ipAddress = "127.0.0.1";
+        public static int PORT = 8081;
+        public const string ENC = "ENCRYPTED";
+        public const string DEC = "DECRYPTED";
+        public static List<string> files = new List<string>();
+        public static List<string> keywords = new List<string>();
+        public static List<Node> A;
+        public static List<TField> T;
+        public static Socket socket;
+        public const string serializedFiles = "Files.os1";
+        public const string serializedKeywords = "Keywords.os1";
+
+        static string GetPassword()
+        {
+            string pass = string.Empty;
+
+            using (StreamReader reader = new StreamReader("SETTINGS.txt"))
+            {
+                pass = reader.ReadLine();
+            }
+
+            return pass;
+        }
+
+        static void CreateStructures()
+        {
+            A = new List<Node>();
+            T = new List<TField>();
+
+            foreach(string keyword in keywords)
+            {
+                List<Node> tempList = new List<Node>();
+                int index = 0;
+
+                // build the linked list of current keyword
+                foreach (string file in files)
+                {
+                    // get the file's ID
+                    string fileName = Path.GetFileNameWithoutExtension(file) + new FileInfo(file).Extension;
+
+                    if (KeywordInFile(keyword, file))
+                    {
+                        Node node = new Node();
+                        node.FileID = fileName;
+
+                        if (index > 0) // other nodes
+                        {
+                            tempList[index - 1].Next = node;
+                            tempList.Add(node);
+                        }
+                        else // first node
+                        {
+                            tempList.Add(node);
+                        }
+
+                        index++;
+                    }
+                }
+
+                // add nodes to array A
+                for (index = 0; index < tempList.Count; index++)
+                {
+                    A.Add(tempList[index]);
+                    if (index == 0)
+                    {
+                        TField field = new TField();
+                        field.Keyword = CryptographicService.EncryptKeyword(keyword, password);
+                        field.Position = A.Count - 1;
+                        T.Add(field);
+                    }
+                }
+            }
+
+            // randomize nodes' positions in A
+            ShuffleArrayA();
+        }
+
+        static void ShuffleArrayA()
+        {
+            Random rng = new Random();
+
+            int index = A.Count - 1;
+            while (index > 0)
+            {
+                int k = rng.Next(index + 1);
+
+                Node value = A[k];
+                A[k] = A[index];
+                A[index] = value;
+
+                foreach (TField field in T)
+                {
+                    if (field.Position == index)
+                    {
+                        field.Position = k;
+                    }
+                    else if(field.Position==k)
+                    {
+                        field.Position = index;
+                    }
+                }
+
+                index--;
+            }
+        }
+
+        public static void SendToServer()
+        {
+            try
+            {
+                CreateStructures();
+
+                if (socket != null)
+                {
+                    // send option for Index Generation
+                    int option = 1;
+                    byte[] buffer = new byte[4];
+                    buffer = BitConverter.GetBytes(option);
+                    socket.Send(buffer);
+
+                    // send the number of files
+                    int nrFiles = files.Count;
+                    buffer = BitConverter.GetBytes(nrFiles);
+                    socket.Send(buffer);
+
+                    // send the encrypted files
+                    foreach (string file in files)
+                    {
+                        string ext = new FileInfo(file).Extension;
+                        string encFile = file.Replace(ext, "") + ENC + ext;
+
+                        CryptographicService.EncryptFile(file, encFile, password);
+                        File.Delete(file);
+                        File.Move(encFile, file);
+
+                        // get the file's ID
+                        string fileName = Path.GetFileNameWithoutExtension(file) + new FileInfo(file).Extension;
+
+                        // send filename length
+                        int length = fileName.Length;
+                        buffer = BitConverter.GetBytes(length);
+                        socket.Send(buffer);
+
+                        // send filename
+                        buffer = Encoding.UTF8.GetBytes(fileName);
+                        socket.Send(buffer);
+
+                        // send file size
+                        byte[] fileBytes = File.ReadAllBytes(file);
+                        length = fileBytes.Length;
+                        buffer = BitConverter.GetBytes(length);
+                        socket.Send(buffer);
+
+                        // send file
+                        socket.Send(fileBytes);
+                        File.Delete(file);
+                    }
+
+                    // send A and T structures
+                    Stream stream = new NetworkStream(socket);
+                    var bin = new BinaryFormatter();
+                    bin.Serialize(stream, A);
+                    bin.Serialize(stream, T);
+                }
+
+                // serialize the file names and keywords so the user knows the current state of the remote database
+                SerializeStructures();
+            }
+            catch (Exception ex)
+            {
+                socket.Disconnect(false);
+                socket.Close();
+            }
+        }
+
+        public static void ReceiveFromServer(string keyword)
+        {
+            byte[] buffer = new byte[4];
+            int index, nr;
+
+            try
+            {
+                // send option for Retrieve
+                int option = 2;
+                buffer = BitConverter.GetBytes(option);
+                socket.Send(buffer);
+
+                // encrypt keyword
+                string encKeyWord = CryptographicService.EncryptKeyword(keyword, password);
+
+                // send keyword length
+                int keyWordLength = encKeyWord.Length;
+                buffer = BitConverter.GetBytes(keyWordLength);
+                socket.Send(buffer);
+
+                // send keyword
+                byte[] keywordBytes = Encoding.UTF8.GetBytes(encKeyWord);
+                socket.Send(keywordBytes);
+
+                // receive number of files
+                Array.Clear(buffer, 0, buffer.Length);
+                index = 0;
+                while (index < 4)
+                {
+                    nr = socket.Receive(buffer, index, 4 - index, SocketFlags.None);
+                    index += nr;
+                }
+                int nrFiles = BitConverter.ToInt32(buffer, 0);
+
+                for (int i = 0; i < nrFiles; i++)
+                {
+                    // receive file name length
+                    Array.Clear(buffer, 0, buffer.Length);
+                    index = 0;
+                    while (index < 4)
+                    {
+                        nr = socket.Receive(buffer, index, 4 - index, SocketFlags.None);
+                        index += nr;
+                    }
+                    int fileNameLength = BitConverter.ToInt32(buffer, 0);
+
+                    // receive file name
+                    byte[] fileNameBytes = new byte[fileNameLength];
+                    index = 0;
+                    while (index < fileNameLength)
+                    {
+                        nr = socket.Receive(fileNameBytes, index, fileNameLength - index, SocketFlags.None);
+                        index += nr;
+                    }
+                    string file = Encoding.UTF8.GetString(fileNameBytes, 0, fileNameBytes.Length);
+
+                    // receive file Size
+                    Array.Clear(buffer, 0, buffer.Length);
+                    index = 0;
+                    while (index < 4)
+                    {
+                        nr = socket.Receive(buffer, index, 4 - index, SocketFlags.None);
+                        index += nr;
+                    }
+                    int fileSize = BitConverter.ToInt32(buffer, 0);
+
+                    // receive file
+                    byte[] fileBytes = new byte[fileSize];
+                    index = 0;
+                    while (index < fileSize)
+                    {
+                        nr = socket.Receive(fileBytes, index, fileSize - index, SocketFlags.None);
+                        index += nr;
+                    }
+                    File.WriteAllBytes(file, fileBytes);
+
+                    // decrypt the received file
+                    string ext = new FileInfo(file).Extension;
+                    string decFileName = file.Replace(ext, "") + DEC + ext;
+                    CryptographicService.DecryptFile(file, decFileName, password);
+                    File.Delete(file);
+                    File.Move(decFileName, file);
+                }
+            }
+            catch(Exception)
+            {
+                socket.Disconnect(false);
+                socket.Close();
+            }
+        }
+
+        static bool KeywordInFile(string keyword, string filePath)
+        {
+            bool retVal = false;
+            string line;
+
+            try
+            {
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        if (line.Contains(keyword))
+                        {
+                            retVal = true;
+                        }
+                    }
+                }
+            }
+            catch(Exception)
+            {
+                retVal = false;
+            }
+
+            return retVal;
+        }
+
+        static Socket CreateEndPoint()
+        {
+            Socket socket = new Socket(AddressFamily.InterNetwork,
+                SocketType.Stream, ProtocolType.Tcp);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ipAddress), PORT);
+
+            try
+            {
+                socket.Connect(ep);
+            }
+            catch (Exception)
+            {
+                socket = null;
+            }
+
+            return socket;
+        }
+
+        public static void SerializeStructures()
+        {
+            try
+            {
+                using (Stream stream = File.Open(serializedFiles, FileMode.Create))
+                {
+                    BinaryFormatter bformatter = new BinaryFormatter();
+                    bformatter.Serialize(stream, files);
+                }
+
+                using (Stream stream = File.Open(serializedKeywords, FileMode.Create))
+                {
+                    BinaryFormatter bformatter = new BinaryFormatter();
+                    bformatter.Serialize(stream, keywords);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        public static void DeserializeStructures()
+        {
+            try
+            {
+                if (File.Exists(serializedFiles))
+                {
+                    using (Stream stream = File.Open(serializedFiles, FileMode.Open))
+                    {
+                        BinaryFormatter bformatter = new BinaryFormatter();
+                        files = (List<string>)bformatter.Deserialize(stream);
+                    }
+                }
+
+                if (File.Exists(serializedKeywords))
+                {
+                    using (Stream stream = File.Open(serializedKeywords, FileMode.Open))
+                    {
+                        BinaryFormatter bformatter = new BinaryFormatter();
+                        keywords = (List<string>)bformatter.Deserialize(stream);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            try
+            {
+                DeserializeStructures();
+                password = GetPassword();
+                socket = CreateEndPoint();
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new frmMain());
+            }
+            catch(Exception ex)
+            {
+                if(ex is SocketException)
+                {
+                    MessageBox.Show("Could not connect to the remote server", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+    }
+}

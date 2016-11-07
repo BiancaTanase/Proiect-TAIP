@@ -1,0 +1,5 @@
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\SerializedData\bin\Debug\SerializedData.dll
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\SerializedData\bin\Debug\SerializedData.pdb
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\SerializedData\obj\Debug\SerializedData.csprojResolveAssemblyReference.cache
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\SerializedData\obj\Debug\SerializedData.dll
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\SerializedData\obj\Debug\SerializedData.pdb

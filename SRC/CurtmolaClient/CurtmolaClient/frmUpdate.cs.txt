@@ -1,0 +1,178 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CurtmolaClient
+{
+    public partial class frmUpdate : Form
+    {
+        public frmUpdate()
+        {
+            InitializeComponent();
+            Program.files.Clear();
+            Program.keywords.Clear();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            int index = 0;
+            this.grdFiles.Rows.Clear();
+
+            foreach(string file in Program.files)
+            {
+                index = this.grdFiles.Rows.Add();
+                this.grdFiles.Rows[index].Cells[0].Value = file;
+            }
+
+            index = 0;
+            this.grdKeywords.Rows.Clear();
+
+            foreach (string keyword in Program.keywords)
+            {
+                index = this.grdKeywords.Rows.Add();
+                this.grdKeywords.Rows[index].Cells[0].Value = keyword;
+            }
+        }
+
+        private void btnAddFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            DialogResult diagResult;
+            dialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            dialog.CheckFileExists = true;
+            dialog.CheckPathExists = true;
+            dialog.Multiselect = false;
+            dialog.Title = "Select the file you wish to upload";
+
+            bool exists = true;
+            diagResult = dialog.ShowDialog();
+            string fileName = string.Empty;
+
+            while (exists && diagResult == DialogResult.OK)
+            {
+                fileName = dialog.FileName;
+                exists = false;
+
+                for (int i = 0; i < this.grdFiles.Rows.Count; i++)
+                {
+                    if (this.grdFiles.Rows[i].Cells[0].Value.ToString().Equals(fileName))
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if (exists)
+                {
+                    MessageBox.Show("This file has already been selected.\nSelect another file.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dialog.ShowDialog();
+                }
+            }
+
+            if (diagResult == DialogResult.OK)
+            {
+                int index = this.grdFiles.Rows.Add();
+                this.grdFiles.Rows[index].Cells[0].Value = dialog.FileName;
+                this.grdFiles.ClearSelection();
+                this.grdFiles.Rows[index].Selected = true;
+                Program.files.Add(dialog.FileName);
+            }
+        }
+
+        private void btnRemoveFile_Click(object sender, EventArgs e)
+        {
+            if (this.grdFiles.Rows.Count > 0)
+            {
+                if (this.grdFiles.CurrentCell != null)
+                {
+                    int index = this.grdFiles.CurrentCell.RowIndex;
+                    string fileName = this.grdFiles.CurrentCell.Value.ToString();
+                    string file = Path.GetFileNameWithoutExtension(fileName) + new FileInfo(fileName).Extension;
+                    Program.files.Remove(file);
+                    this.grdFiles.Rows.RemoveAt(index);
+                }
+                else
+                {
+                    MessageBox.Show("No row selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No row selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnAddKeyword_Click(object sender, EventArgs e)
+        {
+            frmKeyword frmKey = new frmKeyword();
+            frmKey.ShowDialog();
+
+            if (frmKey.IsValid)
+            {
+                string keyword = frmKey.Keyword;
+                int index = this.grdKeywords.Rows.Add();
+                this.grdKeywords.Rows[index].Cells[0].Value = keyword;
+                this.grdKeywords.ClearSelection();
+                this.grdKeywords.Rows[index].Selected = true;
+                Program.keywords.Add(keyword);
+            }
+        }
+
+        private void btnRemoveKeyword_Click(object sender, EventArgs e)
+        {
+            if (this.grdKeywords.Rows.Count > 0)
+            {
+                if (this.grdKeywords.CurrentCell != null)
+                {
+                    int index = this.grdKeywords.CurrentCell.RowIndex;
+                    string keyword = this.grdKeywords.CurrentCell.Value.ToString();
+                    Program.keywords.Remove(keyword);
+                    this.grdKeywords.Rows.RemoveAt(index);
+                }
+                else
+                {
+                    MessageBox.Show("No row selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No row selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Program.files.Count > 0)
+                {
+                    if (Program.keywords.Count > 0)
+                    {
+                        Program.SendToServer();
+                        MessageBox.Show("Operation succeeded.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("There has to be at least one keyword in the list.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("There has to be at least one file in the list.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Operation failed.\nException: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
+}

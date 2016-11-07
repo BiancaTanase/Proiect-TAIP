@@ -1,0 +1,8 @@
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\CurtmolaClient\bin\Release\CurtmolaClient.exe.config
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\CurtmolaClient\bin\Release\CurtmolaClient.exe
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\CurtmolaClient\bin\Release\CurtmolaClient.pdb
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.csprojResolveAssemblyReference.cache
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.Properties.Resources.resources
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.csproj.GenerateResource.Cache
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.exe
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.pdb

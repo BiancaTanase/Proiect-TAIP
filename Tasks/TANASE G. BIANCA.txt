@@ -4,3 +4,8 @@
 -create requirements analysis
 
 -implementation of the cloud server
+
+--------------------------------------------------------------------------
+
+07/11/2016
+- structured the main business logic for the client side application

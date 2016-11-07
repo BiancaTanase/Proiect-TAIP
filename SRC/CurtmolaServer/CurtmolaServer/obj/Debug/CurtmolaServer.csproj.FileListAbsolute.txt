@@ -1,0 +1,6 @@
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaServer\CurtmolaServer\bin\Debug\CurtmolaServer.exe.config
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaServer\CurtmolaServer\bin\Debug\CurtmolaServer.exe
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaServer\CurtmolaServer\bin\Debug\CurtmolaServer.pdb
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaServer\CurtmolaServer\obj\Debug\CurtmolaServer.csprojResolveAssemblyReference.cache
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaServer\CurtmolaServer\obj\Debug\CurtmolaServer.exe
+C:\Users\Gandalf\Documents\Visual Studio 2015\Projects\NET\CurtmolaServer\CurtmolaServer\obj\Debug\CurtmolaServer.pdb
