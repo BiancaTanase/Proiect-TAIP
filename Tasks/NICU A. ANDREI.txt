@@ -9,4 +9,4 @@
 ---------------------------------------------------------------------------------
 Creational design pattern SINGLETON    for File Class
 Structural design pattern PROXY        for Encryption Class
-ADO.net
+Entity Framework Model First
