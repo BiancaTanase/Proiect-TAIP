@@ -12,9 +12,36 @@ using System.Data;
 
 namespace Client
 {
-    class CEncryption
+    public interface Procedure
     {
-        public static string AES_Encrypt(string plainT, byte[] password)
+        string AES_Encrypt(string plainT, byte[] password);
+        string AES_Decrypt(string cipherT, byte[] password);
+    }
+
+    public class PrincipalProcedure : Procedure
+    {
+        private CEncryption objEncryption;
+        public string AES_Encrypt(string plainT, byte[] password)
+        {
+            if (objEncryption == null)
+                objEncryption = new CEncryption();
+
+            return objEncryption.AES_Encrypt(plainT, password);
+        }
+
+        public string AES_Decrypt(string cipherT, byte[] password)
+        {
+            if (objEncryption == null)
+                objEncryption = new CEncryption();
+
+            return objEncryption.AES_Decrypt(cipherT, password);
+        }
+    }
+
+    class CEncryption : Procedure
+    {
+        
+        public string AES_Encrypt(string plainT, byte[] password)
         {
             byte[] plainText = Encoding.UTF8.GetBytes(plainT);
             password = SHA256.Create().ComputeHash(password);
@@ -25,12 +52,12 @@ namespace Client
             {
                 using (RijndaelManaged AES = new RijndaelManaged())
                 {
-                    AES.KeySize = 256;
+                    AES.KeySize   = 256;
                     AES.BlockSize = 128;
 
-                    var key = new Rfc2898DeriveBytes(password, password, 1000);
-                    AES.Key = key.GetBytes(AES.KeySize / 8);
-                    AES.IV = key.GetBytes(AES.BlockSize / 8);
+                    var key  = new Rfc2898DeriveBytes(password, password, 1000);
+                    AES.Key  = key.GetBytes(AES.KeySize / 8);
+                    AES.IV   = key.GetBytes(AES.BlockSize / 8);
 
                     AES.Mode = CipherMode.CBC;
 
@@ -46,10 +73,10 @@ namespace Client
             return Convert.ToBase64String(encryptedBytes);
         }
 
-        public static string AES_Decrypt(string cipherT, byte[] password)
+        public string AES_Decrypt(string cipherT, byte[] password)
         {
             byte[] cipherText = Convert.FromBase64String(cipherT);
-            password = SHA256.Create().ComputeHash(password);
+            password          = SHA256.Create().ComputeHash(password);
 
             byte[] plainText = null;
 
@@ -57,12 +84,12 @@ namespace Client
             {
                 using (RijndaelManaged AES = new RijndaelManaged())
                 {
-                    AES.KeySize = 256;
+                    AES.KeySize   = 256;
                     AES.BlockSize = 128;
 
-                    var key = new Rfc2898DeriveBytes(password, password, 1000);
-                    AES.Key = key.GetBytes(AES.KeySize / 8);
-                    AES.IV = key.GetBytes(AES.BlockSize / 8);
+                    var key  = new Rfc2898DeriveBytes(password, password, 1000);
+                    AES.Key  = key.GetBytes(AES.KeySize / 8);
+                    AES.IV   = key.GetBytes(AES.BlockSize / 8);
 
                     AES.Mode = CipherMode.CBC;
 

@@ -10,6 +10,18 @@ namespace Client
 {
     class CFile
     {
+        private static CFile fileInstance = new CFile();
+
+        private  CFile(){}
+
+        public static CFile GetInstance
+        {
+            get
+            {
+                return fileInstance;
+            }
+        }
+
         private string selectedFilePath = "";
         private string selectedFileName = "";
         private string selectedFileText = "";

@@ -6,3 +6,4 @@ C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.Properties
 C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.csproj.GenerateResource.Cache
 C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.exe
 C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.pdb
+C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache

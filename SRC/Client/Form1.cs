@@ -16,9 +16,11 @@ namespace Client
         public Form1()
         {
             InitializeComponent();
+            
         }
 
-        CFile objFile = new CFile();
+        CFile objFile = CFile.GetInstance;
+
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -48,14 +50,14 @@ namespace Client
 
         private void btEncrypt_Click(object sender, EventArgs e)
         {
-            CEncryption objEncrypt = new CEncryption();
-            rtCipherText.Text = (CEncryption.AES_Encrypt(rtPlaintext.Text, Encoding.UTF8.GetBytes(teKey.Text)));
+            PrincipalProcedure objEncrypt = new PrincipalProcedure();
+            rtCipherText.Text = (objEncrypt.AES_Encrypt(rtPlaintext.Text, Encoding.UTF8.GetBytes(teKey.Text)));
         }
 
         private void btDecrypt_Click(object sender, EventArgs e)
         {
-            CEncryption objDecrypt = new CEncryption();
-            rtCipherText.Text = (CEncryption.AES_Decrypt(rtPlaintext.Text, Encoding.UTF8.GetBytes(teKey.Text)));
+            PrincipalProcedure objEncrypt = new PrincipalProcedure();
+            rtCipherText.Text = (objEncrypt.AES_Decrypt(rtPlaintext.Text, Encoding.UTF8.GetBytes(teKey.Text)));
         }
 
         private void btPath_Click(object sender, EventArgs e)
@@ -76,15 +78,15 @@ namespace Client
 
         private void btEncryptText_Click(object sender, EventArgs e)
         {
-            CEncryption objEncrypt = new CEncryption();
-            textPreview.Text = (CEncryption.AES_Encrypt(objFile.retFileText(), Encoding.UTF8.GetBytes(tePassword.Text)));
+            PrincipalProcedure objEncrypt = new PrincipalProcedure();
+            textPreview.Text = (objEncrypt.AES_Encrypt(objFile.retFileText(), Encoding.UTF8.GetBytes(tePassword.Text)));
             objFile.updateFileText(textPreview.Text);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CEncryption objDecrypt = new CEncryption();
-            textPreview.Text = (CEncryption.AES_Decrypt(objFile.retFileText(), Encoding.UTF8.GetBytes(tePassword.Text)));
+            PrincipalProcedure objEncrypt = new PrincipalProcedure();
+            textPreview.Text = (objEncrypt.AES_Decrypt(objFile.retFileText(), Encoding.UTF8.GetBytes(tePassword.Text)));
             objFile.updateFileText(textPreview.Text);
         }
 
