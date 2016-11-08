@@ -5,3 +5,7 @@
 -package diagram
 
 -front end part of the Web application and the arhitecture of the database
+
+---------------------------------------------------------------------------------
+Creational design pattern SINGLETON    for File Class
+Structural design pattern PROXY        for Encryption Class
