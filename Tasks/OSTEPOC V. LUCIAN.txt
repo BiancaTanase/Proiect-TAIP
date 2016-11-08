@@ -11,3 +11,4 @@
 Creational pattern SINGLETON    pentru DB, Server
 Behavioral pattern STRATEGY     pentru StrategyConvert (Encapsulates an algorithm inside a class)
 Behavioral pattern COMMAND      pentru Command[comunicatie] (Encapsulate a command request as an object)
+ADO.net
