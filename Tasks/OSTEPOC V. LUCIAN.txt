@@ -12,3 +12,6 @@ Creational pattern SINGLETON    pentru DataBase.cs , Servant.cs
 Behavioral pattern STRATEGY     pentru StrategyConvert.cs (Encapsulates an algorithm inside a class)
 Behavioral pattern COMMAND      pentru Command.cs  [comunicatie] (Encapsulate a command request as an object)
 Entity Framework Model First
+--------------------------------------------------------------------
+11/13/2016
+add TDD pngs, update code
