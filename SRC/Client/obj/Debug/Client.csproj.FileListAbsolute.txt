@@ -7,3 +7,16 @@ C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.csproj.Gen
 C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.exe
 C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.pdb
 C:\Users\Andrei\Desktop\Taip\Proiect-TAIP\SRC\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\bin\Debug\Client.exe.config
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\bin\Debug\Client.exe
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\bin\Debug\Client.pdb
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\obj\Debug\Client.Form1.resources
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\obj\Debug\Client.Properties.Resources.resources
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\obj\Debug\Client.exe
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\obj\Debug\Client.pdb
+c:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+c:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\bin\Debug\Castle.Core.dll
+c:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\bin\Debug\Moq.dll
+c:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\bin\Debug\Castle.Core.xml
+c:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\bin\Debug\Moq.xml

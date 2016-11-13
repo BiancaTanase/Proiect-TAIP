@@ -18,8 +18,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" Nullable="false" />
-    <Property Name="password" Type="String" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Folder" Relationship="ModelDB.UserFolder" FromRole="User" ToRole="Folder" />
   </EntityType>
   <EntityType Name="Folder">
@@ -27,8 +27,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" Nullable="false" />
-    <Property Name="createDate" Type="DateTime" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="createDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="asignedUser" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Data" Relationship="ModelDB.FolderData" FromRole="Folder" ToRole="Data" />
     <NavigationProperty Name="User" Relationship="ModelDB.UserFolder" FromRole="Folder" ToRole="User" />
@@ -38,10 +38,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="type" Type="String" Nullable="false" />
-    <Property Name="addDate" Type="DateTime" Nullable="false" />
-    <Property Name="lastAccessedDate" Type="DateTime" Nullable="false" />
-    <Property Name="encryptedData" Type="String" Nullable="false" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="addDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="lastAccessedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="encryptedData" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Folder" Relationship="ModelDB.FolderData" FromRole="Data" ToRole="Folder" />
     <Property Name="FolderId" Type="Int32" Nullable="false" />
   </EntityType>

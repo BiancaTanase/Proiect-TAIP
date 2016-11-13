@@ -26,5 +26,10 @@ namespace Server.Properties
                 return defaultInstance;
             }
         }
+
+        public string ConnectionString {
+            get { return "data source=DESKTOP-UTEK3K9;initial catalog=TAIP;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;"; }
+            internal set {; }
+        }
     }
 }
