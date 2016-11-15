@@ -10,3 +10,8 @@
 Creational design pattern SINGLETON    for File Class
 Structural design pattern PROXY        for Encryption Class
 Entity Framework Model First
+
+---------------------------------------------------------------------------------
+12/11/2016
+-BPMN diagram;
+-revise code.
