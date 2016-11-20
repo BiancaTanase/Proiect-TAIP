@@ -47,13 +47,14 @@ namespace Client
                     AsynchronousClient.Send(client, bytes);
                     AsynchronousClient.sendDone.WaitOne();
 
-                    AsynchronousClient.Send(client, "<EOF>");
+                    AsynchronousClient.Send(client, Encoding.ASCII.GetBytes("<EOF>"));
                     AsynchronousClient.sendDone.WaitOne();
 
                     AsynchronousClient.ReceiveBytes(client);
                     AsynchronousClient.receiveDone.WaitOne();
-
-                    return AsynchronousClient.responseBytes;
+                    MessageBox.Show(AsynchronousClient.response);
+                    return AsynchronousClient.response;
+                    
                 }
                 else
                 {

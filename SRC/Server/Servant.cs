@@ -153,6 +153,8 @@ namespace Server
                     Command command = new Command();
                     command.commBytes = Encoding.ASCII.GetBytes(content.Replace("<EOF>", String.Empty));
                     command.execute(handler);
+
+                    Send(handler, "Success");
                 }
                 else
                 {

@@ -232,7 +232,7 @@ namespace Client
         {
             // Begin sending the data to the remote device.
             client.BeginSend(data, 0, data.Length, 0,
-                new AsyncCallback(SendCallback), data);
+                new AsyncCallback(SendCallback), client);
         }
         public static void SendCallback(IAsyncResult ar)
         {

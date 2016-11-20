@@ -19,9 +19,9 @@ namespace Client
                 parameters.Add(textBoxPasswordLogin.Text);
                 command.setCommand(Request.VerifyLogin, parameters);
 
-                bool response = (bool)command.execute(AsynchronousClient.client);
+                string response = (string)command.execute(AsynchronousClient.client);
 
-                if (true == response)
+                if ("Success" == response)
                 {
                     MessageBox.Show("Autentificat!");
                 }
