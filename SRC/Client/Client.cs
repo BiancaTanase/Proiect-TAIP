@@ -26,14 +26,15 @@ namespace Client
     {
         // The port number for the remote device.
         private const int port = Settings.serverPort;
+        private const string address = "localhost";//"127.0.0.1";
         public static Socket client;
 
         // ManualResetEvent instances signal completion.
-        private static ManualResetEvent connectDone =
+        public static ManualResetEvent connectDone =
             new ManualResetEvent(false);
-        private static ManualResetEvent sendDone =
+        public static ManualResetEvent sendDone =
             new ManualResetEvent(false);
-        private static ManualResetEvent receiveDone =
+        public static ManualResetEvent receiveDone =
             new ManualResetEvent(false);
 
         // The response from the remote device.
@@ -48,7 +49,7 @@ namespace Client
                 // Establish the remote endpoint for the socket.
                 // The name of the 
                 // remote device is "host.contoso.com".
-                IPHostEntry ipHostInfo = Dns.Resolve("host.contoso.com");
+                IPHostEntry ipHostInfo = Dns.Resolve("localhost");
                 IPAddress ipAddress = ipHostInfo.AddressList[0];
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 
@@ -62,19 +63,19 @@ namespace Client
                 connectDone.WaitOne();
 
                 // Send test data to the remote device.
-                Send(client, "This is a test<EOF>");
-                sendDone.WaitOne();
+                //Send(client, "This is a test<EOF>");
+                //sendDone.WaitOne();
 
-                // Receive the response from the remote device.
-                Receive(client);
-                receiveDone.WaitOne();
+                //// Receive the response from the remote device.
+                //Receive(client);
+                //receiveDone.WaitOne();
 
-                // Write the response to the console.
-                Console.WriteLine("Response received : {0}", response);
+                //// Write the response to the console.
+                //Console.WriteLine("Response received : {0}", response);
 
-                // Release the socket.
-                client.Shutdown(SocketShutdown.Both);
-                client.Close();
+                //// Release the socket.
+                //client.Shutdown(SocketShutdown.Both);
+                //client.Close();
 
             }
             catch (Exception e)

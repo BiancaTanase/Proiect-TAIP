@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModelDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Data">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="addDate" Type="datetime" Nullable="false" />
+    <Property Name="lastAccessedDate" Type="datetime" Nullable="false" />
+    <Property Name="encryptedData" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FolderId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Folders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="asignedUser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Folder_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_FolderData">
+    <End Role="Folders" Type="Self.Folders" Multiplicity="1" />
+    <End Role="Data" Type="Self.Data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Folders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Data">
+        <PropertyRef Name="FolderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserFolder">
+    <End Role="Folders" Type="Self.Folders" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Folders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Folder_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelDBStoreContainer">
+    <EntitySet Name="Data" EntityType="Self.Data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Folders" EntityType="Self.Folders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_FolderData" Association="Self.FK_FolderData">
+      <End Role="Folders" EntitySet="Folders" />
+      <End Role="Data" EntitySet="Data" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserFolder" Association="Self.FK_UserFolder">
+      <End Role="Folders" EntitySet="Folders" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

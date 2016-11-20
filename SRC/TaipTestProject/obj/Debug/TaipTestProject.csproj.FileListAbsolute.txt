@@ -32,3 +32,12 @@ c:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Moq.dll
 c:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\nunit.mocks.dll
 c:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Castle.Core.xml
 c:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Moq.xml
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.Unity.Interception.dll
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.Unity.Interception.xml
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.ServiceLocation.xml

@@ -5,15 +5,16 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Practices.Unity;
 
 namespace Client
 {
-    class Command
+    public class Command:ICommand
     {
         public Request name;
         public List<Object> parameters = new List<object>();
 
-        public Command(Request name, List<Object> objs)
+        public void setCommand(Request name, List<Object> objs)
         {
             this.name = name;
             parameters = objs;
@@ -21,17 +22,17 @@ namespace Client
 
         public Command() { }
 
-        public void SetCommandName(Request name)
+        public void setCommandName(Request name)
         {
             this.name = name;
         }
 
-        public void SetCommandObjs(List<Object> objs)
+        public void setCommandObjs(List<Object> objs)
         {
             this.parameters = objs;
         }
 
-        public object Execute(Socket client)
+        public object execute(Socket client)
         {
             Object result = null;
             List<byte> commandToSend = new List<byte>();
@@ -39,11 +40,18 @@ namespace Client
 
             try
             {
+                if (null == client) throw new Exception("No connection!");
                 if(0 <= name && null != parameters)
                 {
                     byte[] bytes = strategy.GetBytesSpecific(this);
                     AsynchronousClient.Send(client, bytes);
+                    AsynchronousClient.sendDone.WaitOne();
+
+                    AsynchronousClient.Send(client, "<EOF>");
+                    AsynchronousClient.sendDone.WaitOne();
+
                     AsynchronousClient.ReceiveBytes(client);
+                    AsynchronousClient.receiveDone.WaitOne();
 
                     return AsynchronousClient.responseBytes;
                 }

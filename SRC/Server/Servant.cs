@@ -48,6 +48,7 @@ namespace Server
 
     public class AsynchronousSocketListener
     {
+
         // Thread signal.
         public static ManualResetEvent allDone = new ManualResetEvent(false);
 
@@ -63,9 +64,9 @@ namespace Server
             // Establish the local endpoint for the socket.
             // The DNS name of the computer
             // running the listener is "host.contoso.com".
-            IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
+            IPHostEntry ipHostInfo = Dns.Resolve("localhost");
             IPAddress ipAddress = ipHostInfo.AddressList[0];
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
+            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 3800);
 
             // Create a TCP/IP socket.
             Socket listener = new Socket(AddressFamily.InterNetwork,
@@ -138,7 +139,7 @@ namespace Server
                     state.buffer, 0, bytesRead));
 
                 // Check for end-of-file tag. If it is not there, read 
-                // more data.
+                // more data
                 content = state.sb.ToString();
                 if (content.IndexOf("<EOF>") > -1)
                 {
@@ -147,7 +148,11 @@ namespace Server
                     Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
                         content.Length, content);
                     // Echo the data back to the client.
-                    Send(handler, content);
+                    //Send(handler, content);
+
+                    Command command = new Command();
+                    command.commBytes = Encoding.ASCII.GetBytes(content.Replace("<EOF>", String.Empty));
+                    command.execute(handler);
                 }
                 else
                 {

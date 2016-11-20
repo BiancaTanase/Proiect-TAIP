@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,8 +17,9 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //AsynchronousClient.StartClient();
-            Application.Run(new Form1());
+            Thread thread = new Thread(new ThreadStart(AsynchronousClient.StartClient));
+            thread.Start();
+            Application.Run(new ClientForm());
         }
     }
 }

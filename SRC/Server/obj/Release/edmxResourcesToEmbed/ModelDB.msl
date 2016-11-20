@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelDBStoreContainer" CdmEntityContainer="ModelDBContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Folders">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Folder)">
+        <MappingFragment StoreEntitySet="Folders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="asignedUser" ColumnName="asignedUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Data">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Data)">
+        <MappingFragment StoreEntitySet="Data">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="addDate" ColumnName="addDate" />
+          <ScalarProperty Name="lastAccessedDate" ColumnName="lastAccessedDate" />
+          <ScalarProperty Name="encryptedData" ColumnName="encryptedData" />
+          <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserFolder" TypeName="ModelDB.UserFolder" StoreEntitySet="Users">
+      <EndProperty Name="Folder">
+        <ScalarProperty Name="Id" ColumnName="Folder_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

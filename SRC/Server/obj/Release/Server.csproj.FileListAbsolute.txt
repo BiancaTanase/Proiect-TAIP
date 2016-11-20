@@ -1,0 +1,17 @@
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\Server.exe.config
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\Server.exe
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\Server.pdb
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\Castle.Core.dll
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\EntityFramework.dll
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\Moq.dll
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\Castle.Core.xml
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\EntityFramework.xml
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\bin\Release\Moq.xml
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\obj\Release\Server.Properties.Resources.resources
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\obj\Release\Server.csproj.GenerateResource.Cache
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\obj\Release\Server.exe
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\obj\Release\Server.pdb
+C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Server\obj\Release\Server.ServerForm.resources
