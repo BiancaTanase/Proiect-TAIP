@@ -15,8 +15,8 @@ namespace Client
             try
             {
                 List<Object> parameters = new List<object>();
-                parameters.Add(textBoxNameLogin);
-                parameters.Add(textBoxPasswordLogin);
+                parameters.Add(textBoxNameLogin.Text);
+                parameters.Add(textBoxPasswordLogin.Text);
                 command.setCommand(Request.VerifyLogin, parameters);
 
                 bool response = (bool)command.execute(AsynchronousClient.client);
