@@ -53,6 +53,14 @@ namespace Client
 
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
+                //Nicu  change commandBytes
+                if(classMethodName.Contains("ICommand::execute"))
+                {
+                    byte[] bytes = ClientForm.command.getCommandBytes();
+                    ///----------
+                    ClientForm.command.setCommandBytes(bytes);
+                }
+
                 //execute original method
                 msg = getNext()(input, getNext);
                 stopwatch.Stop();

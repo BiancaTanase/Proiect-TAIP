@@ -12,6 +12,9 @@ namespace Client
     {
         void setCommand(Request name, List<Object> objs);
 
+        void setCommandBytes(byte[] bytes);
+        byte[] getCommandBytes();
+
         void setCommandName(Request name);
 
         void setCommandObjs(List<Object> objs);

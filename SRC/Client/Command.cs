@@ -13,11 +13,22 @@ namespace Client
     {
         public Request name;
         public List<Object> parameters = new List<object>();
+        public byte[] commandBytes;
 
         public void setCommand(Request name, List<Object> objs)
         {
             this.name = name;
             parameters = objs;
+        }
+
+        public void setCommandBytes(byte[] bytes)
+        {
+            this.commandBytes = bytes;
+        }
+
+        public byte[] getCommandBytes()
+        {
+            return this.commandBytes;
         }
 
         public Command() { }
@@ -36,15 +47,14 @@ namespace Client
         {
             Object result = null;
             List<byte> commandToSend = new List<byte>();
-            StrategyConvertCommand strategy = new StrategyConvertCommand();
 
             try
             {
                 if (null == client) throw new Exception("No connection!");
-                if(0 <= name && null != parameters)
+                if(0 <= name && null != parameters && commandBytes != null)
                 {
-                    byte[] bytes = strategy.GetBytesSpecific(this);
-                    AsynchronousClient.Send(client, bytes);
+                    
+                    AsynchronousClient.Send(client, commandBytes);
                     AsynchronousClient.sendDone.WaitOne();
 
                     AsynchronousClient.Send(client, Encoding.ASCII.GetBytes("<EOF>"));

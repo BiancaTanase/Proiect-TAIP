@@ -8,7 +8,7 @@ namespace Client
     public partial class ClientForm : Form
     {
         IUnityContainer container = new UnityContainer();
-        public ICommand command;
+        public static ICommand command;
 
         public ClientForm()
         {

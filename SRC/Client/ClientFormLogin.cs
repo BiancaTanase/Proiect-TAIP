@@ -19,6 +19,9 @@ namespace Client
                 parameters.Add(textBoxPasswordLogin.Text);
                 command.setCommand(Request.VerifyLogin, parameters);
 
+                StrategyConvertCommand strategy = new StrategyConvertCommand();
+                command.setCommandBytes(strategy.GetBytesSpecific(this));
+
                 string response = (string)command.execute(AsynchronousClient.client);
 
                 if ("Success" == response)
