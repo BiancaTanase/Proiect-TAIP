@@ -20,7 +20,7 @@ namespace Client
                 command.setCommand(Request.VerifyLogin, parameters);
 
                 StrategyConvertCommand strategy = new StrategyConvertCommand();
-                command.setCommandBytes(strategy.GetBytesSpecific(this));
+                command.setCommandBytes(strategy.GetBytesSpecific(command));
 
                 string response = (string)command.execute(AsynchronousClient.client);
 
