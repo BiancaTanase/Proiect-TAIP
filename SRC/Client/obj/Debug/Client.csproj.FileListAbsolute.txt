@@ -32,3 +32,6 @@ C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\obj\Debug\Client.Properties.Reso
 C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\obj\Debug\Client.csproj.GenerateResource.Cache
 C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\obj\Debug\Client.exe
 C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\Client\obj\Debug\Client.pdb
+C:\Users\Andrei\Desktop\taip-aop\Proiect-TAIP\SRC\Client\bin\Debug\Client.exe.config
+C:\Users\Andrei\Desktop\taip-aop\Proiect-TAIP\SRC\Client\obj\Debug\Client.exe
+C:\Users\Andrei\Desktop\taip-aop\Proiect-TAIP\SRC\Client\obj\Debug\Client.pdb
