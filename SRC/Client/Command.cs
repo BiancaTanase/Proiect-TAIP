@@ -25,7 +25,11 @@ namespace Client
         {
             this.commandBytes = bytes;
         }
-
+        public void setCommandBytes()
+        {
+            StrategyConvertCommand strategy = new StrategyConvertCommand();
+            this.commandBytes = strategy.GetBytesSpecific(this);
+        }
         public byte[] getCommandBytes()
         {
             return this.commandBytes;
