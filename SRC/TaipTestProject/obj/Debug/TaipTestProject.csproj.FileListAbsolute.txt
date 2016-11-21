@@ -41,3 +41,6 @@ C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Pra
 C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
 C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 C:\Users\naicuL\Desktop\Proiect-TAIP\SRC\TaipTestProject\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Andrei\Desktop\taip-aop\Proiect-TAIP\SRC\TaipTestProject\obj\Debug\TaipTestProject.csprojResolveAssemblyReference.cache
+C:\Users\Andrei\Desktop\taip-aop\Proiect-TAIP\SRC\TaipTestProject\obj\Debug\TaipTestProject.dll
+C:\Users\Andrei\Desktop\taip-aop\Proiect-TAIP\SRC\TaipTestProject\obj\Debug\TaipTestProject.pdb

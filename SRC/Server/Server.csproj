@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CCommandEncryptcs.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Data.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
