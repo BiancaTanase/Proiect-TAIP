@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CurtmolaClient
+{
+    public partial class frmRetrieve : Form
+    {
+        public frmRetrieve()
+        {
+            InitializeComponent();
+            Program.client.DeserializeStructures();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            int index = 0;
+            this.grdDownloadKeys.Rows.Clear();
+
+            foreach (string keyword in Program.client.keywords)
+            {
+                index = this.grdDownloadKeys.Rows.Add();
+                this.grdDownloadKeys.Rows[index].Cells[0].Value = keyword;
+            }
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.grdDownloadKeys.Rows.Count > 0)
+                {
+                    if (this.grdDownloadKeys.CurrentCell != null)
+                    {
+                        int index = this.grdDownloadKeys.CurrentCell.RowIndex;
+                        string keyword = this.grdDownloadKeys.CurrentCell.Value.ToString();
+                        Program.client.ReceiveFromServer(keyword);
+                        MessageBox.Show("Operation succedeed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No row selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No row selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Operation failed.\nException: "+ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
+}
