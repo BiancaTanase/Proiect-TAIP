@@ -16,7 +16,6 @@ namespace CurtmolaServer
     public class Server
     {
         #region settings
-        bool autentificate = false;
         TAIPDatabase db = TAIPDatabase.Instance;
         const int PORT = 8081;
         ManualResetEvent queryHandled = new ManualResetEvent(false);
@@ -26,6 +25,7 @@ namespace CurtmolaServer
         const string serializedAFile = "A.os1";
         const string serializedTFile = "T.os1";
         int clientIndex = 0;
+        List<int> autentificate = new List<int>();
         #endregion
 
         #region Constructor
@@ -76,6 +76,8 @@ namespace CurtmolaServer
             Console.WriteLine("Client with ID {0} connected...", clientIndex);
             byte[] bytes = new byte[4];
             int nr, index;
+            bool autentificate = false;
+            string user = String.Empty;
 
             // Get the socket that handles the client request.
             Socket listener = (Socket)ar.AsyncState;
@@ -128,142 +130,168 @@ namespace CurtmolaServer
                                 bytes = BitConverter.GetBytes(response);
                                 handler.Send(bytes);
 
+                                if(response == true)
+                                {
+                                    autentificate = true;
+                                    user = name;
+                                }
+
                                 break;
                             }
 
-                    }
-
-                    if (autentificate)
-                    {
-                        if (option == 1) // Store files
-                        {
-                            // delete all existing files to rebuild the index
-                            DeleteExistingFiles();
-
-                            // reinitialize the list of files
-                            files = new List<string>();
-
-                            // receive number of files
-                            Array.Clear(bytes, 0, bytes.Length);
-                            index = 0;
-                            while (index < 4)
+                        default:
                             {
-                                nr = handler.Receive(bytes, index, 4 - index, SocketFlags.None);
-                                index += nr;
-                            }
-                            int nrFiles = BitConverter.ToInt32(bytes, 0);
-
-                            for (int i = 0; i < nrFiles; i++)
-                            {
-                                // receive file name length
-                                Array.Clear(bytes, 0, bytes.Length);
-                                index = 0;
-                                while (index < 4)
+                                if (autentificate)
                                 {
-                                    nr = handler.Receive(bytes, index, 4 - index, SocketFlags.None);
-                                    index += nr;
+                                    if (option == (int)Utilities.Request.AddData) // Store files
+                                    {
+                                        List<byte[]> fBytes = new List<byte[]>();
+                                        // delete all existing files to rebuild the index
+                                        //DeleteExistingFiles();
+
+                                        // reinitialize the list of files
+                                        files = new List<string>();
+
+                                        // receive number of files
+                                        Array.Clear(bytes, 0, bytes.Length);
+                                        index = 0;
+                                        while (index < 4)
+                                        {
+                                            nr = handler.Receive(bytes, index, 4 - index, SocketFlags.None);
+                                            index += nr;
+                                        }
+                                        int nrFiles = BitConverter.ToInt32(bytes, 0);
+
+                                        for (int i = 0; i < nrFiles; i++)
+                                        {
+                                            // receive file name length
+                                            Array.Clear(bytes, 0, bytes.Length);
+                                            index = 0;
+                                            while (index < 4)
+                                            {
+                                                nr = handler.Receive(bytes, index, 4 - index, SocketFlags.None);
+                                                index += nr;
+                                            }
+                                            int fileNameLength = BitConverter.ToInt32(bytes, 0);
+
+                                            // receive file name
+                                            byte[] fileNameBytes = new byte[fileNameLength];
+                                            index = 0;
+                                            while (index < fileNameLength)
+                                            {
+                                                nr = handler.Receive(fileNameBytes, index, fileNameLength - index, SocketFlags.None);
+                                                index += nr;
+                                            }
+                                            string fileName = Encoding.UTF8.GetString(fileNameBytes, 0, fileNameBytes.Length);
+
+                                            // receive file size
+                                            Array.Clear(bytes, 0, bytes.Length);
+                                            index = 0;
+                                            while (index < 4)
+                                            {
+                                                nr = handler.Receive(bytes, index, 4 - index, SocketFlags.None);
+                                                index += nr;
+                                            }
+                                            int fileSize = BitConverter.ToInt32(bytes, 0);
+
+                                            //receive file
+                                            byte[] fileBytes = new byte[fileSize];
+                                            index = 0;
+                                            while (index < fileSize)
+                                            {
+                                                nr = handler.Receive(fileBytes, index, fileSize - index, SocketFlags.None);
+                                                index += nr;
+                                            }
+
+                                            fBytes.Add(fileBytes);
+                                            //db.AddToFolder(user, fileName, fileBytes, keywords);
+                                            //File.WriteAllBytes(fileName, fileBytes);
+                                            files.Add(fileName);
+                                        }
+
+                                        // receive A and T structures
+                                        Stream stream = new NetworkStream(handler);
+                                        var bin = new BinaryFormatter();
+                                        A = new List<Node>();
+                                        A = (List<Node>)bin.Deserialize(stream);
+                                        T = new List<TField>();
+                                        T = (List<TField>)bin.Deserialize(stream);
+
+                                        string keywords = String.Empty;
+                                        foreach (TField field in T)
+                                        {
+                                            keywords += field.Keyword;
+                                        }
+
+                                        for (int i = 0; i < files.Count; ++i)
+                                            db.AddToFolder(user, files[i], fBytes[i], keywords);
+
+                                        // serialize the data received, so the server will keep the structures after it is reopened
+                                        SerializeStructures();
+                                    }
+                                    else if (option == (int)Utilities.Request.RequestData) // Send files
+                                    {
+                                        // receive leyword length
+                                        Array.Clear(bytes, 0, bytes.Length);
+                                        index = 0;
+                                        while (index < 4)
+                                        {
+                                            nr = handler.Receive(bytes, index, 4 - index, SocketFlags.None);
+                                            index += nr;
+                                        }
+                                        int keywordLength = BitConverter.ToInt32(bytes, 0);
+
+                                        // receive keyword
+                                        byte[] keywordBytes = new byte[keywordLength];
+                                        index = 0;
+                                        while (index < keywordLength)
+                                        {
+                                            nr = handler.Receive(keywordBytes, index, keywordLength - index, SocketFlags.None);
+                                            index += nr;
+                                        }
+                                        string keyword = Encoding.UTF8.GetString(keywordBytes, 0, keywordBytes.Length);
+
+                                        // search through index for the received keyword
+                                        List<byte[]> list = db.GetFile(user, keyword);
+
+                                        // send number of files to user
+                                        int nrFiles = list.Count;
+                                        Array.Clear(bytes, 0, bytes.Length);
+                                        bytes = BitConverter.GetBytes(nrFiles);
+                                        handler.Send(bytes);
+
+                                        for (int i = 0; i < list.Count; ++i)
+                                        {
+                                            handler.Send(list.ElementAt(i));
+                                        }
+                                        // send the files to user
+                                        //foreach (string file in list)
+                                        //{
+                                        //    // send file name length
+                                        //    int fileNameLength = file.Length;
+                                        //    Array.Clear(bytes, 0, bytes.Length);
+                                        //    bytes = BitConverter.GetBytes(fileNameLength);
+                                        //    handler.Send(bytes);
+
+                                        //    // send file name
+                                        //    byte[] fileNameBytes = Encoding.UTF8.GetBytes(file);
+                                        //    handler.Send(fileNameBytes);
+
+                                        //    // send file size
+                                        //    byte[] fileBytes = File.ReadAllBytes(file);
+                                        //    int fileSize = fileBytes.Length;
+                                        //    Array.Clear(bytes, 0, bytes.Length);
+                                        //    bytes = BitConverter.GetBytes(fileSize);
+                                        //    handler.Send(bytes);
+
+                                        //    // send file
+                                        //    handler.Send(fileBytes);
+                                        //}
+
+                                    }
                                 }
-                                int fileNameLength = BitConverter.ToInt32(bytes, 0);
-
-                                // receive file name
-                                byte[] fileNameBytes = new byte[fileNameLength];
-                                index = 0;
-                                while (index < fileNameLength)
-                                {
-                                    nr = handler.Receive(fileNameBytes, index, fileNameLength - index, SocketFlags.None);
-                                    index += nr;
-                                }
-                                string fileName = Encoding.UTF8.GetString(fileNameBytes, 0, fileNameBytes.Length);
-
-                                // receive file size
-                                Array.Clear(bytes, 0, bytes.Length);
-                                index = 0;
-                                while (index < 4)
-                                {
-                                    nr = handler.Receive(bytes, index, 4 - index, SocketFlags.None);
-                                    index += nr;
-                                }
-                                int fileSize = BitConverter.ToInt32(bytes, 0);
-
-                                //receive file
-                                byte[] fileBytes = new byte[fileSize];
-                                index = 0;
-                                while (index < fileSize)
-                                {
-                                    nr = handler.Receive(fileBytes, index, fileSize - index, SocketFlags.None);
-                                    index += nr;
-                                }
-                                File.WriteAllBytes(fileName, fileBytes);
-                                files.Add(fileName);
+                                break;
                             }
-
-                            // receive A and T structures
-                            Stream stream = new NetworkStream(handler);
-                            var bin = new BinaryFormatter();
-                            A = new List<Node>();
-                            A = (List<Node>)bin.Deserialize(stream);
-                            T = new List<TField>();
-                            T = (List<TField>)bin.Deserialize(stream);
-
-                            // serialize the data received, so the server will keep the structures after it is reopened
-                            SerializeStructures();
-                        }
-                        else if (option == 2) // Send files
-                        {
-                            // receive leyword length
-                            Array.Clear(bytes, 0, bytes.Length);
-                            index = 0;
-                            while (index < 4)
-                            {
-                                nr = handler.Receive(bytes, index, 4 - index, SocketFlags.None);
-                                index += nr;
-                            }
-                            int keywordLength = BitConverter.ToInt32(bytes, 0);
-
-                            // receive keyword
-                            byte[] keywordBytes = new byte[keywordLength];
-                            index = 0;
-                            while (index < keywordLength)
-                            {
-                                nr = handler.Receive(keywordBytes, index, keywordLength - index, SocketFlags.None);
-                                index += nr;
-                            }
-                            string keyword = Encoding.UTF8.GetString(keywordBytes, 0, keywordBytes.Length);
-
-                            // search through index for the received keyword
-                            List<string> list = SearchForKeyword(keyword);
-
-                            // send number of files to user
-                            int nrFiles = list.Count;
-                            Array.Clear(bytes, 0, bytes.Length);
-                            bytes = BitConverter.GetBytes(nrFiles);
-                            handler.Send(bytes);
-
-                            // send the files to user
-                            foreach (string file in list)
-                            {
-                                // send file name length
-                                int fileNameLength = file.Length;
-                                Array.Clear(bytes, 0, bytes.Length);
-                                bytes = BitConverter.GetBytes(fileNameLength);
-                                handler.Send(bytes);
-
-                                // send file name
-                                byte[] fileNameBytes = Encoding.UTF8.GetBytes(file);
-                                handler.Send(fileNameBytes);
-
-                                // send file size
-                                byte[] fileBytes = File.ReadAllBytes(file);
-                                int fileSize = fileBytes.Length;
-                                Array.Clear(bytes, 0, bytes.Length);
-                                bytes = BitConverter.GetBytes(fileSize);
-                                handler.Send(bytes);
-
-                                // send file
-                                handler.Send(fileBytes);
-                            }
-
-                        }
                     }
                 }
             }

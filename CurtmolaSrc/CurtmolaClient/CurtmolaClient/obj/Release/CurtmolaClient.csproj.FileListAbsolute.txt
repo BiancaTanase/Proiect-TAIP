@@ -1,0 +1,8 @@
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\CurtmolaClient\bin\Release\CurtmolaClient.exe.config
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.FormLogin.resources
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.frmKeyword.resources
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.frmMain.resources
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.frmRetrieve.resources
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.frmUpdate.resources
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.Properties.Resources.resources
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\CurtmolaClient\obj\Release\CurtmolaClient.csproj.GenerateResource.Cache

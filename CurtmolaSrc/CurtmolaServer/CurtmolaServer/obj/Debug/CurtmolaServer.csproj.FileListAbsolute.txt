@@ -1,0 +1,12 @@
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\bin\Debug\CurtmolaServer.exe.config
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\bin\Debug\CurtmolaServer.exe
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\bin\Debug\CurtmolaServer.pdb
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\bin\Debug\EntityFramework.dll
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\bin\Debug\SerializedData.dll
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\bin\Debug\EntityFramework.xml
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\bin\Debug\SerializedData.pdb
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\obj\Debug\CurtmolaServer.csprojResolveAssemblyReference.cache
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\obj\Debug\CurtmolaServer.exe
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\obj\Debug\CurtmolaServer.pdb

@@ -45,6 +45,8 @@
     <Property Name="addedDate" Type="nvarchar(max)" Nullable="false" />
     <Property Name="data" Type="nvarchar(max)" Nullable="false" />
     <Property Name="FolderId" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="keywords" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="UserFolder">
     <End Role="User" Type="ModelDB.Store.Users" Multiplicity="*" />
@@ -117,6 +119,8 @@
           <Property Name="data" Type="String" Nullable="false" />
           <NavigationProperty Name="Folder" Relationship="ModelDB.FolderData" FromRole="Data" ToRole="Folder" />
           <Property Name="FolderId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="keywords" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="UserFolder">
           <End Type="ModelDB.User" Role="User" Multiplicity="1" />
@@ -167,6 +171,8 @@
           <ScalarProperty Name="addedDate" ColumnName="addedDate" />
           <ScalarProperty Name="data" ColumnName="data" />
           <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="keywords" ColumnName="keywords" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -19,6 +19,8 @@ namespace CurtmolaServer
         public string addedDate { get; set; }
         public string data { get; set; }
         public int FolderId { get; set; }
+        public string name { get; set; }
+        public string keywords { get; set; }
     
         public virtual Folder Folder { get; set; }
     }

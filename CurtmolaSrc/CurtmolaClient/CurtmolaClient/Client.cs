@@ -232,11 +232,11 @@ namespace CurtmolaClient
                 if (socket != null)
                 {
                     // send option for Index Generation
-                    int option = 1;
+                    int option = (int)Utilities.Request.AddData;
                     byte[] buffer = new byte[4];
                     buffer = BitConverter.GetBytes(option);
                     socket.Send(buffer);
-
+                                        
                     // send the number of files
                     int nrFiles = files.Count;
                     buffer = BitConverter.GetBytes(nrFiles);
@@ -272,7 +272,7 @@ namespace CurtmolaClient
 
                         // send file
                         socket.Send(fileBytes);
-                        File.Delete(file);
+                        //File.Delete(file);
                     }
 
                     // send A and T structures
@@ -280,6 +280,7 @@ namespace CurtmolaClient
                     var bin = new BinaryFormatter();
                     bin.Serialize(stream, A);
                     bin.Serialize(stream, T);
+
                 }
 
                 // serialize the file names and keywords so the user knows the current state of the remote database
@@ -300,7 +301,7 @@ namespace CurtmolaClient
             try
             {
                 // send option for Retrieve
-                int option = 2;
+                int option = (int)Utilities.Request.RequestData;
                 buffer = BitConverter.GetBytes(option);
                 socket.Send(buffer);
 

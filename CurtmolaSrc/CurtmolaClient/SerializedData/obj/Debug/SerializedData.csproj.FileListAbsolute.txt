@@ -2,3 +2,7 @@ c:\Users\naicul\Desktop\Proiect-TAIP\SRC\CurtmolaClient\SerializedData\bin\Debug
 c:\Users\naicul\Desktop\Proiect-TAIP\SRC\CurtmolaClient\SerializedData\bin\Debug\SerializedData.pdb
 c:\Users\naicul\Desktop\Proiect-TAIP\SRC\CurtmolaClient\SerializedData\obj\Debug\SerializedData.dll
 c:\Users\naicul\Desktop\Proiect-TAIP\SRC\CurtmolaClient\SerializedData\obj\Debug\SerializedData.pdb
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\SerializedData\bin\Debug\SerializedData.dll
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\SerializedData\bin\Debug\SerializedData.pdb
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\SerializedData\obj\Debug\SerializedData.dll
+C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaClient\SerializedData\obj\Debug\SerializedData.pdb

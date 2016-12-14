@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/13/2016 08:10:24
+-- Date Created: 12/13/2016 20:24:52
 -- Generated from EDMX file: C:\Users\naicul\Desktop\Proiect-TAIP\CurtmolaSrc\CurtmolaServer\CurtmolaServer\ModelDB.edmx
 -- --------------------------------------------------
 
@@ -66,7 +66,9 @@ CREATE TABLE [dbo].[Data] (
     [type] nvarchar(max)  NOT NULL,
     [addedDate] nvarchar(max)  NOT NULL,
     [data] nvarchar(max)  NOT NULL,
-    [FolderId] int  NOT NULL
+    [FolderId] int  NOT NULL,
+    [name] nvarchar(max)  NOT NULL,
+    [keywords] nvarchar(max)  NOT NULL
 );
 GO
 
